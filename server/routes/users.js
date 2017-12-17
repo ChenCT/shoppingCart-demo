@@ -7,6 +7,7 @@ router.get('/', function(req, res, next) {
   res.send('respond with a resource');
 });
 
+//登录
 router.post('/login',function(req,res,next){
 	var param = {
 		userName:req.body.userName,
@@ -58,6 +59,7 @@ router.post('/login',function(req,res,next){
     });
 });
 
+// 登出
 router.post('/logout',function(req,res,next){
 	res.cookie("userId","",{
 		path:"/",
@@ -74,6 +76,7 @@ router.post('/logout',function(req,res,next){
 	});
 });
 
+// 检查登录
 router.get('/checkLogin',function(req,res,next){
     if(req.cookies.userId){
         res.json({
@@ -91,6 +94,7 @@ router.get('/checkLogin',function(req,res,next){
     }
 });
 
+// 获取购物车商品数量
 router.get('/getCartCount',function(req,res,next){
     if(req.cookies && req.cookies.userId){
         var userId = req.cookies.userId;
@@ -119,6 +123,7 @@ router.get('/getCartCount',function(req,res,next){
     }
 });
 
+// 获取购物车列表
 router.get('/cartList',function(req,res,next){
     var userId = req.cookies.userId;
     var sql = "select * from goods_cart where user_id='"+userId+"'";
@@ -141,6 +146,7 @@ router.get('/cartList',function(req,res,next){
     });
 });
 
+// 删除购物车
 router.post('/cart/del',function(req,res,next){
     var userId = req.cookies.userId, productId = req.body.productId;
     var sql = "delete from goods_cart where user_id='"+userId+"' and product_id='"+productId+"'";
@@ -163,6 +169,7 @@ router.post('/cart/del',function(req,res,next){
     });
 });
 
+// 编辑购物车内商品
 router.post('/cart/cartEdit',function(req,res,next){
     var userId = req.cookies.userId, 
         productId = req.body.productId, 
@@ -188,6 +195,7 @@ router.post('/cart/cartEdit',function(req,res,next){
     });
 });
 
+// 选中所有商品
 router.post('/cart/checkAll',function(req,res,next){
     var userId = req.cookies.userId,
         checkAll = req.body.checkAll;
@@ -211,6 +219,7 @@ router.post('/cart/checkAll',function(req,res,next){
     });
 });
 
+// 获取地址列表
 router.get('/addressList',function(req,res,next){
     var userId = req.cookies.userId;
     var sql = "select * from address where user_id='"+userId+"'";
@@ -233,6 +242,7 @@ router.get('/addressList',function(req,res,next){
     });
 });
 
+// 设为默认地址
 router.post('/setDefault',function(req,res,next){
     var userId = req.cookies.userId,
         addressId = req.body.addressId;
@@ -265,6 +275,7 @@ router.post('/setDefault',function(req,res,next){
     }
 });
 
+// 删除地址
 router.post('/delAddress',function(req,res,next){
     var userId = req.cookies.userId,
         addressId = req.body.addressId;
@@ -297,6 +308,7 @@ router.post('/delAddress',function(req,res,next){
     }
 });
 
+// 选好后确认支付
 router.post('/payMent',function(req,res,next){
     var userId = req.cookies.userId,
         addressId = req.body.addressId,
@@ -332,13 +344,6 @@ router.post('/payMent',function(req,res,next){
                             if(err3){
                                 return next(err3);
                             }
-                            // else{                              
-                            //     res.json({
-                            //         status:'0',
-                            //         msg:'insert into order 成功',
-                            //         result:''
-                            //     });
-                            // }
                         });
                     }
                 }
@@ -355,14 +360,6 @@ router.post('/payMent',function(req,res,next){
                             if(err4){
                                 return next(err4);
                             }
-                            // else{
-                                
-                            //     // res.json({
-                            //     //     status:'0',
-                            //     //     msg:'insert into orderdetail 成功',
-                            //     //     result:''
-                            //     // });
-                            // }
                         });
                     })
 
@@ -372,13 +369,6 @@ router.post('/payMent',function(req,res,next){
                         if(err5){
                             return next(err5);
                         }
-                        // else{
-                        //     res.json({
-                        //         status:'0',
-                        //         msg:'delete address success',
-                        //         result:result
-                        //     });
-                        // }
                     });
                 }
             });
@@ -394,6 +384,7 @@ router.post('/payMent',function(req,res,next){
     }); 
 });
 
+// 获取订单详情
 router.get('/orderDetail',function(req,res,next){
     var userId = req.cookies.userId;
     var orderId = req.query.orderId;
@@ -420,4 +411,5 @@ router.get('/orderDetail',function(req,res,next){
         }
     });
 });
+
 module.exports = router;

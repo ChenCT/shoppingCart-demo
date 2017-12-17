@@ -2,12 +2,11 @@
   <div id="app">
     <!-- <img src="./assets/logo.png"> -->
     <router-view></router-view>
-    <router-view name="title"></router-view>
-    <router-view name="img"></router-view>
   </div>
 </template>
 
 <script>
+import './assets/iconfont.js'
 export default {
   name: 'app'
 }
@@ -20,6 +19,14 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 10px;
 }
+
+.icon {
+   width: 1.6em; height: 1.6em;
+   vertical-align: -0.15em;
+   fill: currentColor;
+   overflow: hidden;
+}
+
 </style>

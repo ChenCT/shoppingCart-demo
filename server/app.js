@@ -9,9 +9,9 @@ myConnection = require('express-myconnection'),
     dbOptions = {
         host: 'localhost',
         user: 'root',
-        password: '********',
+        password: '*******',
         port: 3306,
-        database: 'shoppingcart'
+        database: '*********'  //数据库
     };
 
 var index = require('./routes/index');
