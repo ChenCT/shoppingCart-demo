@@ -6,13 +6,13 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var mysql = require('mysql');
 myConnection = require('express-myconnection'),
-    dbOptions = {
-        host: 'localhost',
-        user: 'root',
-        password: '*******',
-        port: 3306,
-        database: '*********'  //数据库
-    };
+dbOptions = {
+    host: 'localhost',
+    user: 'root',
+    password: 'shumei1404',
+    port: 3306,
+    database: 'shoppingcart'    //数据库
+};
 
 var index = require('./routes/index');
 var users = require('./routes/users');
